@@ -1,0 +1,53 @@
+<script type="text/javascript">
+
+    function lexSubscribe(){
+        var win = new Window({
+            className: "<?php echo $this->getWindowTheme(); ?>", 
+            width:350, 
+            height:250, 
+            zIndex: 1000, 
+            resizable: true, 
+            title: "' . <?php echo $this->getTitle(); ?> . '", 
+            showEffect:Effect.Appear, 
+            hideEffect: Effect.SwitchOff, 
+            draggable:true, 
+            wiredDrag: true
+        });
+        var subscriptionForm = $("lex_subscribe").innerHTML; 
+        win.getContent().innerHTML =  subscriptionForm; 
+        win.showCenter();
+    }
+
+</script>
+
+<div id="lex_subscribe" style="display: none;">
+    <br />
+    <form id="lex_subscribe_form" method="post" action="http://campaigns.serverhost.net/box.php">
+        <div>Email:</div>
+        <div>
+            <input name="email" value="" type="text" />
+        </div>
+        <br />
+        <div>First Name:</div>
+        <div>
+            <input name="first_name" value="" type="text" />
+        </div>
+        <br />
+        <div>Last Name:</div>
+        <div>
+            <input name="last_name" value="" type="text" />
+        </div>
+        <br />
+        <input type="hidden" name="field[]" />
+        <input type="hidden" name="nlbox[]" value="' . <?php echo $list_selection ?> . '" />
+        <input type="hidden" name="funcml" value="add" />
+        <input type="hidden" name="p" value="1358" />
+        <input type="hidden" name="_charset" value="utf-8" />
+        <input type="submit" value="Submit" />
+    </form>
+</div>
+    
+<div class="lex_subscribe_link">
+    <a class="lex_subscribe_link" href="javascript:lexSubscribe()">Subscribe to Mailing List</a>
+</div>
+            

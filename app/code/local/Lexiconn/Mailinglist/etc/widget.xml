@@ -1,0 +1,119 @@
+<?xml version="1.0"?>
+<widgets>
+    <mailinglist_subscriptionform_inline type="mailinglist/subscriptionforminline">
+        <name>LexiConn Inline Mailinglist Subscription Form Widget</name>
+        <description type="desc">Generates widget to subscribe to Mailing List</description>
+        <parameters>
+        	<widget_title>
+        		<required>1</required>
+        		<visible>1</visible>
+        		<value>Subscribe to Mailing List</value>
+        		<label>Widget Title</label>
+        		<type>text</type>
+        	</widget_title>
+        	<list_selection>
+        		<required>1</required>
+        		<visible>1</visible>
+        		<label>Mailing List</label>
+        		<type>select</type>
+        		<source_model>mailinglist/source</source_model>
+        	</list_selection>
+        	<custom_fields>
+        		<required>0</required>
+        		<visible>1</visible>
+        		<label>Additional Subscription Fields</label>
+        		<type>multiselect</type>
+        		<source_model>mailinglist/customfields</source_model>
+        	</custom_fields>
+        	<good_page translate="label">
+			    <visible>1</visible>
+			    <required>1</required>
+			    <label>Subscription Confirmation Page</label>
+			    <type>label</type>
+			    <helper_block>
+			        <type>adminhtml/cms_page_widget_chooser</type>
+			        <data>
+			            <button translate="open">
+			                <open>Select Page...</open>
+			            </button>
+			        </data>
+			    </helper_block>
+			    <sort_order>10</sort_order>
+			</good_page>
+			<error_page translate="label">
+			    <visible>1</visible>
+			    <required>1</required>
+			    <label>Subscription Error Page</label>
+			    <type>label</type>
+			    <helper_block>
+			        <type>adminhtml/cms_page_widget_chooser</type>
+			        <data>
+			            <button translate="open">
+			                <open>Select Page...</open>
+			            </button>
+			        </data>
+			    </helper_block>
+			    <sort_order>12</sort_order>
+			</error_page>
+			
+
+        </parameters>
+    </mailinglist_subscriptionform_inline>
+    <mailinglist_subscriptionform_popup type="mailinglist/subscriptionformpopup">
+        <name>LexiConn Popup Mailinglist Subscription Form Widget</name>
+        <description type="desc">Generates widget to subscribe to Mailing List using a popup window</description>
+        <parameters>
+        	<widget_title>
+        		<required>1</required>
+        		<visible>1</visible>
+        		<value>Subscribe to Mailing List</value>
+        		<label>Widget Title</label>
+        		<type>text</type>
+        	</widget_title>
+        	<list_selection>
+        		<required>1</required>
+        		<visible>1</visible>
+        		<label>Mailing List</label>
+        		<type>select</type>
+        		<source_model>mailinglist/source</source_model>
+        	</list_selection>
+        	<custom_fields>
+        		<required>0</required>
+        		<visible>1</visible>
+        		<label>Additional Subscription Fields</label>
+        		<type>multiselect</type>
+        		<source_model>mailinglist/customfields</source_model>
+        	</custom_fields>
+        	<popup_theme>
+        		<label>Popup Theme</label>
+        		<required>0</required>
+        		<visible>1</visible>
+        		<type>select</type>
+				<sort_order>30</sort_order>
+        		<source_model>mailinglist/themes</source_model>
+        	</popup_theme>
+        	<invalid_email_text>
+        		<required>1</required>
+        		<visible>1</visible>
+        		<value>Please enter a valid email address</value>
+        		<label>Email Validation Text</label>
+        		<type>text</type>
+        	</invalid_email_text>
+        	<email_exists_text>
+        		<required>1</required>
+        		<visible>1</visible>
+        		<value>Email already subscriber to this list.</value>
+        		<label>Email Already Subscribed Text</label>
+        		<type>text</type>
+        	</email_exists_text>
+        	<subscribe_success_text>
+        		<required>1</required>
+        		<visible>1</visible>
+        		<value>You have been added to our mailing list.</value>
+        		<label>Subscribe Success Text</label>
+        		<type>text</type>
+        	</subscribe_success_text>
+        	
+        </parameters>
+    </mailinglist_subscriptionform_popup>
+</widgets>

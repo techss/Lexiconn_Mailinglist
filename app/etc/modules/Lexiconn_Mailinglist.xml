@@ -1,0 +1,11 @@
+<config>
+	<modules>
+		<Lexiconn_Mailinglist>
+			<active>true</active>
+			<codePool>local</codePool>
+			<depends>
+				<Mage_Widget/>
+			</depends>
+		</Lexiconn_Mailinglist>
+	</modules>
+</config>

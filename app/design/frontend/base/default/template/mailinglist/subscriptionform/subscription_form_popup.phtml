@@ -1,0 +1,204 @@
+
+<link rel="stylesheet" type="text/css" href="<?php echo $this->getPopupTheme(); ?>" />
+
+
+  <style>
+  .ui-progressbar {
+    position: relative;
+  }
+  .progress-label {
+    position: absolute;
+    left: 50%;
+    top: 4px;
+    font-weight: bold;
+    text-shadow: 1px 1px 0 #fff;
+  }
+  </style>
+
+<div id="lex_subscribe_popup" style="display: none;">
+    
+    <form id="lex_subscribe_form_popup" method="post" action="/mailinglist/index/subscribe">
+        <div><?php echo $this->__('Email') ?></div>
+        <div class="ui-widget">
+            <input name="email" id="lex_email_popup" type="email" class="ui-autocomplete-input ui-autocomplete-loading" required />
+        </div>
+            
+        <?php $cfields = explode(",", $this->getCustomFields());  ?>
+    
+        
+        <?php if(!empty($cfields[0])):  ?>
+            <?php foreach ($cfields as $field): ?>
+                <?php
+                    if($field=='first_name'){
+                        $fieldName = "first_name";
+                        $fieldLabel = "First Name";
+                        $fieldType = "text";
+                        $required = '';
+                        $defaultValue = '';
+                    } elseif($field=='last_name'){
+                        $fieldName = "last_name";
+                        $fieldLabel = "Last Name";
+                        $fieldType = "text";
+                        $required = '';
+                        $defaultValue = '';
+                    } else{
+                        $helper = Mage::helper('mailinglist');
+                        $fieldData = $helper->getCustomField($field);
+                        $fieldLabel = $fieldData[0]['title'];
+                        $fieldType = $fieldData[0]['element'];
+                        $fieldName =$field;
+                        $required = ($fieldData[0]['req'] != 0) ? 'required-entry' : '';
+                        $defaultValue = !empty($fieldData[0]['val']) ? $fieldData[0]['val'] : '';
+                     } 
+                ?>
+                
+                <br />
+                <div><?php echo $fieldLabel; ?></div>
+                <div>
+                <?php if($fieldType=='text'): ?>
+                    <input name="<?php echo $fieldName; ?>" <?php echo $required; ?> value="<?php echo $defaultValue; ?>" type="text" />
+                <?php else: ?>
+                <?php endif; ?>
+                
+                </div>
+
+            <?php endforeach; ?>
+        <?php endif; ?>
+
+        <br />
+        <input type="hidden" name="listid" id="listid_popup" value="<?php echo $this->getListSelection(); ?>" />
+    </form>
+</div>
+
+<div class="lex_subscribe_popup_wrap">
+    <a href="#" class="lex_subscribe_link" id="lex_subscribe_popup_link">Subscribe to Mailing List</a>
+</div>
+
+<div id="lex_message_popup"></div>
+
+<script type="text/javascript">
+(function($){
+
+	lex_message = $("#lex_message").dialog({
+	      autoOpen: false,
+	      title: 'Subscribing',
+	      maxHeight: 600,
+	      maxWidth: 600,
+	      minWidth: 350,
+	      maxWidth: 350,
+	      modal: true,
+	      buttons: {
+		        OK: function() {
+		        	//$('#lex_subscribe_form').get(0).reset();
+		        	lex_message.dialog( "close" );
+		        }
+	      }
+	});
+
+	lexDialog = $("#lex_subscribe_popup").dialog({
+	      autoOpen: false,
+	      title: '<?php echo $this->getWidgetTitle(); ?>',
+	      maxHeight: 600,
+	      maxWidth: 600,
+	      minWidth: 350,
+	      maxWidth: 350,
+	      modal: true,
+	      
+	     buttons: [
+	                {
+	                    id: "button-cancel",
+	                    text: "Cancel",
+	                    click: function() {
+	                        $(this).dialog("close");
+	                    }
+	                },
+	                {
+	                    id: "button-subscribe",
+	                    text: "Subscribe",
+	                    click: function() {
+	                    	if( !$('#lex_subscribe_form_popup').valid()) {
+	       	        	     
+	        	        	} else {
+
+	        		        	
+	        		        	$("#lex_message_popup").html( "Subscribing..." );
+	        		        	lex_message.dialog("open");
+	        		        	//$('#lex_subscribe_form').get(0).reset();
+	        		        	lexDialog.dialog("close");
+	        		        	var email = $("#lex_email_popup").val();
+	        		            var listid = $("#listid_popup").val();
+
+	        		            var dataObj = $("#lex_subscribe_form_popup").serializeArray();
+	        		            var postdata = $.param(dataObj, false);
+	        		            
+	        	        		$.ajax({
+	          	        	         type: "POST",
+	          	        	         cache: false,
+	          	        	         url: "/mailinglist/index/ajaxsubscribe",
+	          	        	         data: postdata,
+	          	        	         async: false,
+	          	        	         dataType: 'json',
+	          	        	         success: function (msg) {
+	          	        	              if(msg.new_subscriber=="true"){
+	              	        	            $("#lex_message_popup").html("<?php echo $this->getSubscribeSuccessText(); ?>");
+	          	        	              } else{
+		          	        	              
+	          	        	            	 $("#lex_message_popup").html(msg.message);
+	          	        	            	
+	          	        	              }
+    	          	        		 }
+    	          	        	});
+	        	        	}
+	                    }
+	                }
+	     ],
+	      close: function() {
+	    	$('#lex_subscribe_form_popup').get(0).reset();
+	        lexDialog.dialog( "close" );
+	      }
+	     
+	    });
+	
+	   
+	   
+	  $("#lex_subscribe_popup_link").click(function(e){
+		  e.preventDefault();
+		  
+		  lexDialog.dialog("open");
+	  });
+
+	  $("#lex_subscribe_form_popup").validate({
+		  focusCleanup: true,
+		  onkeyup: false,
+		  rules: {
+			    email: {
+			        required: true,
+			        email: true,
+			        remote: {
+			        	url: "/mailinglist/index/checkemail",
+		                type: "post",
+		                data: {
+		                  email: function() {
+		                    return $("#lex_email_popup").val();
+		                  },
+		                  listid: function(){
+		                	return $("#listid_popup").val();
+		                  }
+		                }
+			           
+			        }
+			    }
+			},
+			messages: {
+			    email: {
+			      required: "The email address field is required",
+			      email: "<?php echo $this->getInvalidEmailText(); ?>",
+			      remote: "<?php echo $this->getEmailExistsText(); ?>"
+			    }
+			}
+
+	  });
+		
+	})(jQuery);
+
+</script>

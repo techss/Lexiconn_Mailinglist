@@ -1,0 +1,67 @@
+<h2>Sign up</h2>
+<form method="post" action="http://campaigns.serverhost.net/box.php">
+
+<table>
+	<tr>
+		<td>Email:</td>
+		<td><input name="email" value="" type="text" /></td>
+	</tr>
+
+
+	<tr>
+		<td>First Name:</td>
+		<td><input name="first_name" value="" type="text" /></td>
+	</tr>
+
+	<tr>
+		<td>Last Name:</td>
+		<td><input name="last_name" value="" type="text" /></td>
+	</tr>
+
+
+	
+		<input type="hidden" name="field[]" />
+
+	
+
+	<tr>
+		<td valign="top">Verify</td>
+		<td>
+			<img border="1" align="middle" src="http://campaigns.serverhost.net/ac_global/scripts/randomimage.php" /><br />
+			<input type="text" name="imgverify" id="imgverify" />
+			<div style="font-size:10px; color:#999999;">Enter the text as it appears on the image</div>
+		</td>
+	</tr>
+
+	<tr>
+		<td>&nbsp;</td>
+		<td>
+			Select Lists:<br />
+
+						<label ><input type="checkbox" name="nlbox[]" value="2238" checked="checked" />Magento Test List</label><br />
+								<label ><input type="checkbox" name="nlbox[]" value="2239" checked="checked" />Test List 2</label><br />
+								<label ><input type="checkbox" name="nlbox[]" value="2240" checked="checked" />Test List 3</label><br />
+			
+			</td>
+	</tr>
+
+	<tr>
+		<td>&nbsp;</td>
+		<td>
+			<label><input type="radio" name="funcml" value="add" checked="checked" />Subscribe</label><br />
+			<label><input type="radio" name="funcml" value="unsub2" />Unsubscribe</label>
+		</td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td>
+		<input type="hidden" name="p" value="1358" />
+		<input type="hidden" name="_charset" value="utf-8" />
+		<input type="submit" value="Submit" />
+
+		
+		</td>
+	</tr>
+</table>
+
+</form>

@@ -1,0 +1,68 @@
+<div class="block block-subscribe">
+    <div class="block-title">
+        <strong><span><?php echo $this->getWidgetTitle(); ?></span></strong>
+    </div>
+    
+    <form id="lex_subscribe_form" name="lex_subscribe_form" method="post">
+        <div class="input-box">
+            <input name="email" value="" type="text" class="input-text required-entry validate-email" />
+        </div>
+        <input type="hidden" name="listid" value="<?php echo $this->getListSelection(); ?>" />
+
+        <div class="actions">
+            <button class="button" title="Subscribe" type="submit">
+                <span>
+                    <span>Subscribe</span>
+                </span>
+        </button>
+        </div>
+        
+    </form>
+    <div id="fmError" class="validation-advice" style="display:none;">&nbsp;</div>
+    <div id="fmSuccess" style="display:block;">&nbsp;</div>
+    <span class="please-wait" id="fmLoader" style="display:none;">
+            <img src="<?php echo $this->getSkinUrl('images/opc-ajax-loader.gif') ?>" alt="<?php echo $this->__('Subscribing...') ?>" title="<?php echo $this->__('Subscribing...') ?>" class="v-middle" /> <?php echo $this->__('Subscribing...') ?>
+    </span>
+    
+</div>
+<script type="text/javascript">
+//<![CDATA[
+var fm_formId = 'lex_subscribe_form';
+var fm_myForm = new VarienForm(fm_formId, true);
+var fm_postUrl = '<?php echo $this->getUrl("mailinglist/index/ajaxsubscribe/") ?>';
+function fm_doAjax() {
+    if (fm_myForm.validator.validate()) {
+        new Ajax.Updater(
+            { success:'fmSuccess' }, fm_postUrl, {
+                method:'post',
+                asynchronous:true,
+                evalScripts:false,
+                onComplete:function(response, json) {
+                    //Element.hide(formId);
+                    var resp = response.responseText.evalJSON(true);
+                    if(resp.success == "true"){
+                    	Element.hide(fm_formId);
+                        $('fmSuccess').update(resp.message);
+                        Element.show('fmSuccess');
+                    } else{
+                    	 $('fmError').update(resp.message);
+                         Element.show('fmError');
+                    }
+                },
+                onLoading:function(request, json){
+                    Element.show('fmLoader');
+                },
+                parameters: $(fm_formId).serialize(true),
+            }
+        );
+    }
+}
+
+new Event.observe(fm_formId, 'submit', function(e){
+	Element.hide('fmSuccess');
+	Element.hide('fmError');
+    e.stop();
+    fm_doAjax();
+});
+//]]>
+</script>

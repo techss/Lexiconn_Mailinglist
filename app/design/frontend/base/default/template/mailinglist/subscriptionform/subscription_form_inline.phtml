@@ -1,0 +1,110 @@
+
+
+<div id="lex_subscribe" style="">
+    <h1><?php echo $this->getWidgetTitle(); ?></h1>
+    <div id="formError" class="validation-advice" style="display:none;">&nbsp;</div>
+    <div id="formSuccess" style="display:none;">&nbsp;</div>
+    <form id="lex_subscribe_form_widget" name="lex_subscribe_form_widget" method="post">
+        <div><?php echo $this->__('Email') ?></div>
+        <div>
+            <input name="email" value="" type="text" class="input-text required-entry validate-email" />
+        </div>
+            <input type="hidden" name="custom_fields" value="<?php echo $this->getCustomFields(); ?>" />
+        <?php 
+            $custom_field_text = $this->getCustomFields();
+            $cfields = explode(",", $this->getCustomFields()); 
+        ?>
+        <?php if(is_array($cfields) && !empty($custom_field_text)): ?>
+            <?php foreach ($cfields as $field): ?>
+               
+               <?php
+                        if($field=='first_name'){
+                            $fieldName = "first_name";
+                            $fieldLabel = "First Name";
+                            $fieldType = "text";
+                            $required = '';
+                            $defaultValue = '';
+                        } elseif($field=='last_name'){
+                            $fieldName = "last_name";
+                            $fieldLabel = "Last Name";
+                            $fieldType = "text";
+                            $required = '';
+                            $defaultValue = '';
+                        } else{
+                            $helper = Mage::helper('mailinglist');
+                            $fieldData = $helper->getCustomField($field);
+                            $fieldLabel = $fieldData[0]['title'];
+                            $fieldType = $fieldData[0]['element'];
+                            $fieldName =$field;
+                            $required = ($fieldData[0]['req'] != 0) ? 'required-entry' : '';
+                            $defaultValue = !empty($fieldData[0]['val']) ? $fieldData[0]['val'] : '';
+                         } 
+            
+                ?>
+            
+                    <br />
+                <div><?php echo $fieldLabel; ?></div>
+                
+                    <div>
+                    <?php if($fieldType=='text'): ?>
+                            <input name="<?php echo $fieldName; ?>" class="input-text <?php echo $required; ?>" value="<?php echo $defaultValue; ?>" type="text" />
+                    <?php else: ?>
+                    <?php endif; ?>
+                    </div>
+                <?php endforeach; ?>
+            <?php endif; ?>
+            
+            
+
+        <br />
+       
+        <input type="hidden" name="listid" value="<?php echo $this->getListSelection(); ?>" />
+
+        <input type="submit" value="Submit" />
+        <span class="please-wait" id="formLoader" style="display:none;">
+            <img src="<?php echo $this->getSkinUrl('images/opc-ajax-loader.gif') ?>" alt="<?php echo $this->__('Subscribing...') ?>" title="<?php echo $this->__('Subscribing...') ?>" class="v-middle" /> <?php echo $this->__('Subscribing...') ?>
+        </span>
+    </form>
+    
+</div>
+<script type="text/javascript">
+//<![CDATA[
+var formId = 'lex_subscribe_form_widget';
+var myForm = new VarienForm(formId, true);
+var postUrl = '<?php echo $this->getUrl("mailinglist/index/ajaxsubscribe/") ?>';
+function doAjax() {
+    if (myForm.validator.validate()) {
+        new Ajax.Updater(
+            { success:'formSuccess' }, postUrl, {
+                method:'post',
+                asynchronous:true,
+                evalScripts:false,
+                onComplete:function(response, json) {
+                    //Element.hide(formId);
+                    var resp = response.responseText.evalJSON(true);
+                    if(resp.success == "true"){
+                    	Element.hide(formId);
+                        $('formSuccess').update(resp.message);
+                        Element.show('formSuccess');
+                    } else{
+                    	 $('formError').update(resp.message);
+                         Element.show('formError');
+                    }
+                },
+                onLoading:function(request, json){
+                    Element.show('formLoader');
+                },
+                parameters: $(formId).serialize(true),
+            }
+        );
+    }
+}
+
+new Event.observe(formId, 'submit', function(e){
+	Element.hide('formSuccess');
+	Element.hide('formError');
+    e.stop();
+    doAjax();
+});
+//]]>
+</script>

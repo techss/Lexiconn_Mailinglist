@@ -1,0 +1,140 @@
+<?xml version="1.0"?>
+
+<config>
+	<tabs>
+		<mailinglist translate="label" module="mailinglist">
+			<label>LexiConn Mailinglist</label>
+			<sort_order>400</sort_order>
+		</mailinglist>
+	</tabs>
+	<sections>
+		<mailinglist translate="label" module="mailinglist">
+			<label>LexiConn Mailinglist Settings</label>
+			<tab>mailinglist</tab>
+			<sort_order>10</sort_order>
+			<show_in_default>1</show_in_default>
+			<show_in_website>1</show_in_website>
+			<show_in_store>1</show_in_store>
+			<groups>
+				
+				 <general translate="label comment">
+                    <label>Mailing List Integration Settings</label>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <comment><![CDATA[Enter your API access information for the <a href="http://campaigns.serverhost.net/admin/index.php" target="_blank"><em>LexiConn Mailing List System</em></a> below.]]></comment>
+                    <fields>
+                        <api_username translate="label comment">
+                            <label>Mailing List API Username</label>
+                            <comment>Your username to log in to the LexiConn Mailing List system</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </api_username>
+                        <api_password translate="label comment">
+                            <label>Mailing List API Password</label>
+                            <comment>Your password to log in to the LexiConn Mailing List system</comment>
+                            <frontend_type>password</frontend_type>
+                            <validate>validate-password</validate>
+                            <sort_order>12</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </api_password>
+                        <api_password_confirm translate="label comment">
+                            <label>Confirm API Password</label>
+                            <comment>Please confirm your password</comment>
+                            <frontend_type>password</frontend_type>
+                            <validate>validate-cpassword</validate>
+                            <sort_order>14</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </api_password_confirm>
+                        <api_url translate="label comment">
+                            <label>Mailing List API URL</label>
+                            <comment>API URL for the Lexiconn Mailing List system (should not need to be modified)</comment>
+                            <frontend_type>text</frontend_type>
+                            <validate>validate-url</validate>
+                            <sort_order>16</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </api_url>
+                       
+                        <list_id translate="label comment"> 
+                        	<label>Mailing List</label> 
+                        	<!--<comment><![CDATA[This text appears just beneath the field with a small arrow.<span class="notice">It can contain HTML formatting too!</span>]]></comment> -->
+                        	<frontend_type>select</frontend_type> 
+                        	<source_model>mailinglist/source</source_model> 
+                        	<sort_order>30</sort_order> 
+                        	<show_in_default>1</show_in_default> 
+                        	<show_in_website>1</show_in_website> 
+                        	<show_in_store>1</show_in_store> 
+                        </list_id>
+                        
+                        <add_default translate="label comment"> 
+                        	<label>Add Subscribers to LexiConn List</label> 
+                        	<!--<comment><![CDATA[This text appears just beneath the field with a small arrow.<span class="notice">It can contain HTML formatting too!</span>]]></comment> -->
+                        	<frontend_type>select</frontend_type> 
+                        	<source_model>mailinglist/subscriberaction</source_model> 
+                        	<sort_order>40</sort_order> 
+                        	<show_in_default>1</show_in_default> 
+                        	<show_in_website>1</show_in_website> 
+                        	<show_in_store>1</show_in_store> 
+                        </add_default>
+                       
+                    </fields>
+                </general>
+             
+                <subform translate="label comment">
+                    <label>Mailing List Subsciption Form</label>
+                    <sort_order>30</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <expanded>1</expanded>
+                    
+                    <fields>
+                    
+				                 
+				          <success_message>
+				          	<label>Subscriber Success Message</label>
+                            <comment>Message to display when subscriber is added to the mailing list successfully</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+				          </success_message>
+				          
+				          <duplicate_message>
+				          	<label>Already Subscribed Message</label>
+                            <comment>Message to display when subscriber is already subscribed to the list</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+				          </duplicate_message>
+				          
+				          <error_message>
+				          	<label>Subscriber Error Message</label>
+                            <comment>Message to display when there is an error adding a subscriber to the list</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+				          </error_message>
+				       
+                    </fields>
+                 </subform>
+                
+			</groups>
+		</mailinglist>
+	</sections>
+</config>

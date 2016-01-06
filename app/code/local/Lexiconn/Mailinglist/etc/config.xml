@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<config>
+      <modules>
+            <Lexiconn_Mailinglist>
+                  <version>1.3.0</version>
+            </Lexiconn_Mailinglist>
+      </modules>
+      
+       <default>
+	    	<mailinglist>
+	        	<general>                
+	           		 <api_url>http://campaigns.serverhost.net/admin/api.php</api_url>       
+	           		 <add_default>auto_add</add_default> 
+	       		 </general>
+	       		 
+	       		 <subform>
+	       		 	<success_message>Thank you! You have been subscribed to our mailing list.</success_message>
+	       		 	<duplicate_message>You are already subscribed to this mailing list.</duplicate_message>
+	       		 	<error_message>We're sorry, there was a problem adding you to this mailing list.  Please try again later.</error_message>
+
+	       		 </subform>
+	       	
+	    	</mailinglist>
+	  </default>
+      
+      <global>
+			<blocks>
+			
+				<mailinglist>
+	      			<class>Lexiconn_Mailinglist_Block</class>
+	      		</mailinglist>
+	      		
+				<lexiconn_mailinglist>
+					<class>Lexiconn_Mailinglist_Block</class>
+				</lexiconn_mailinglist>
+
+				<newsletter>
+					<rewrite>
+						  <subscribe>lexiconn_mailinglist_block_newsletter_subscribe</subscribe>
+					</rewrite>
+				</newsletter>
+				
+			</blocks>
+			
+			<helpers>
+				<mailinglist>
+					<class>Lexiconn_Mailinglist_Helper</class>
+				</mailinglist>
+			</helpers>
+			
+			<models>
+			
+				<mailinglist>
+		            <class>Lexiconn_Mailinglist_Model</class>
+		            <resourceModel>mailinglist_resource</resourceModel>
+		        </mailinglist>
+		        
+				<mailinglist_resource>
+					<class>Lexiconn_Mailinglist_Model_Resource</class>
+				</mailinglist_resource>
+			
+			</models>
+			
+			<events>
+			 
+		    	<newsletter_subscriber_save_before>
+		    		<observers>
+		                <lexiconn_mailinglist_model_observer>
+		                    <class>Lexiconn_Mailinglist_Model_Observer</class>
+		                    <method>changeSubscriber</method>
+		                </lexiconn_mailinglist_model_observer>
+		            </observers>
+		    	</newsletter_subscriber_save_before>
+		    	
+		    	<newsletter_subscriber_delete_after>
+		    		<observers>
+		                <lexiconn_mailinglist_model_observer>
+		                    <class>Lexiconn_Mailinglist_Model_Observer</class>
+		                    <method>deleteSubscriber</method>
+		                </lexiconn_mailinglist_model_observer>
+		            </observers>
+		    	</newsletter_subscriber_delete_after>
+		    	
+		    	<checkout_onepage_controller_success_action>
+		    		<observers>
+		                <lexiconn_mailinglist_model_observer>
+		                    <class>Lexiconn_Mailinglist_Model_Observer</class>
+		                    <method>addSubscriber</method>
+		                </lexiconn_mailinglist_model_observer>
+		            </observers>
+		    	</checkout_onepage_controller_success_action>
+		    
+			
+			</events>
+			
+		</global>
+		
+		 <frontend>
+	      	<routers>
+	      	
+	      		<newsletter>
+	      			<args>
+	      				<modules>
+	      					<lexiconn_mailinglist before="Mage_Newsletter">Lexiconn_Mailinglist</lexiconn_mailinglist>
+	      				</modules>
+	      			</args>
+	      		</newsletter>
+	      		
+	      		<mailinglist>
+	      			<use>standard</use>
+					<args>
+						<module>Lexiconn_Mailinglist</module>
+						<frontName>mailinglist</frontName>
+					</args>
+	      		</mailinglist>
+	      		 
+	      	</routers>
+     
+	      	<layout>
+		      	<updates>
+		      		<mailinglist>
+		      			<file>mailinglist.xml</file>
+		      		</mailinglist>
+		      	</updates>
+	      	</layout>
+	      	
+	      	<translate>
+				<modules>
+					<lexiconn_mailinglist>
+						<files>
+							<default>Lexiconn_Mailinglist.csv</default>
+						</files>
+					</lexiconn_mailinglist>
+				</modules>
+			</translate>
+      	 
+      
+      </frontend>
+		
+		<admin>
+ 
+			<routers>
+				<adminhtml>
+					<args> 
+						<modules>
+							<lexiconn_mailinglist before="Mage_Adminhtml">Lexiconn_Mailinglist_Adminhtml</lexiconn_mailinglist>
+						</modules>
+					</args>
+				</adminhtml>
+			</routers>
+	
+		</admin>
+		
+		<adminhtml>
+
+			<layout>
+				<updates>
+					<lexiconn_mailinglist module="lexiconn_mailinglist">
+						<file>mailinglist.xml</file>
+					</lexiconn_mailinglist>
+				</updates>
+			</layout>
+			
+			<translate>
+				<modules>
+					<lexiconn_mailinglist>
+						<files>
+							<default>Lexiconn_Mailinglist.csv</default>
+						</files>
+					</lexiconn_mailinglist>
+				</modules>
+			</translate>
+			
+		</adminhtml>
+      
+</config>
