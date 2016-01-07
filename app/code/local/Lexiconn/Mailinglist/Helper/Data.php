@@ -232,6 +232,50 @@ class Lexiconn_Mailinglist_Helper_Data extends Mage_Core_Helper_Abstract
         
     }
     
+    public function checkCredentials($password=NULL, $username=NULL){
+    	
+    	$this->requestHasPostData = FALSE;
+    	
+    	self::$apiUser = ($username==NULL) ? Mage::getStoreConfig('mailinglist/general/api_username') : $username;
+    	self::$apiPassword = ($password==NULL) ? Mage::getStoreConfig('mailinglist/general/api_password') : $password;
+    	
+    	$this->initParams();
+    	
+    	$params = array(
+    					"api_action"  => "branding_view",
+    					"api_output" => "serialize",
+    	);
+    	
+    	$this->buildParams($params);
+    	
+    	Mage::fireLog($this->requestURL, "");
+    	
+    	$this->request = curl_init($this->requestURL);
+    	
+    	curl_setopt($this->request, CURLOPT_HEADER, 0);
+    	curl_setopt($this->request, CURLOPT_RETURNTRANSFER, 1);
+    	curl_setopt($this->request, CURLOPT_SSL_VERIFYPEER, FALSE);
+    	
+    	$this->response = (string)curl_exec($this->request);
+    	
+    	curl_close($this->request);
+    	
+    	$output = array();
+    	
+    	Mage::fireLog($this->response, "");
+    	
+    	$resp = unserialize($this->response);
+
+    	Mage::fireLog($resp['result_code'], "");
+    	
+    	if($resp['result_code']==0){
+    		return FALSE;
+    	} else{
+    		return TRUE;
+    	}
+    	
+    }
+    
     /**
      * Return a list of mailing lists set up on account for Magento settings
      *
@@ -818,6 +862,5 @@ class Lexiconn_Mailinglist_Helper_Data extends Mage_Core_Helper_Abstract
        
         
     }
-    
     
 }

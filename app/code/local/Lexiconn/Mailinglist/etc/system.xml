@@ -35,6 +35,7 @@
                             <show_in_store>1</show_in_store>
                         </api_username>
                         <api_password translate="label comment">
+                        	<backend_model>mailinglist/auth</backend_model>
                             <label>Mailing List API Password</label>
                             <comment>Your password to log in to the LexiConn Mailing List system</comment>
                             <frontend_type>password</frontend_type>
