@@ -1,5 +1,14 @@
 <?php
- 
+/**
+ * Lexiconn Mailinglist Block Adminhtml Notifications
+ *
+ * Calls the lexiconn_mailing helper checkCredentials method to check if the API username and password are correct
+ * for mailinglist integration.  If they are not correct, adds a message to the admin notifications.
+ *
+ * @category   Lexiconn
+ * @package    Lexiconn_Mailinglist
+ */ 
+
 class Lexiconn_Mailinglist_Block_Adminhtml_Notifications extends Mage_Adminhtml_Block_Template
 {
     public function getMessage()

@@ -248,8 +248,6 @@ class Lexiconn_Mailinglist_Helper_Data extends Mage_Core_Helper_Abstract
     	
     	$this->buildParams($params);
     	
-    	Mage::fireLog($this->requestURL, "");
-    	
     	$this->request = curl_init($this->requestURL);
     	
     	curl_setopt($this->request, CURLOPT_HEADER, 0);
@@ -262,11 +260,7 @@ class Lexiconn_Mailinglist_Helper_Data extends Mage_Core_Helper_Abstract
     	
     	$output = array();
     	
-    	Mage::fireLog($this->response, "");
-    	
     	$resp = unserialize($this->response);
-
-    	Mage::fireLog($resp['result_code'], "");
     	
     	if($resp['result_code']==0){
     		return FALSE;
@@ -391,13 +385,10 @@ class Lexiconn_Mailinglist_Helper_Data extends Mage_Core_Helper_Abstract
         );
     
         $this->client = new Zend_Http_Client( $this->requestURL, $config );
-        //  $this->client->setAdapter('Zend_Http_Client_Adapter_Curl' );
         $this->client->setMethod( Zend_Http_Client::POST );
         $this->client->setParameterPost( $this->postData );
 
         $this->response = $this->client->request();
-        
-       // $response = unserialize($response);
     
     }
     
@@ -447,15 +438,11 @@ class Lexiconn_Mailinglist_Helper_Data extends Mage_Core_Helper_Abstract
                 $subscriberLists = "";
                 
                 if(count($subLists) > 0){
-                   
                     foreach($subLists as $list){
-
                         $subscriberLists .= $list['listname'] . ",";
                     }
-                   
                     
                 } else{
-                 
                     $subscriberLists = $subLists[0]['listname'];
                 }
                 
@@ -467,23 +454,15 @@ class Lexiconn_Mailinglist_Helper_Data extends Mage_Core_Helper_Abstract
             }
         } else{
             $subLists = $this->subscriberInfo['lists'];
-                
                 $subscriberLists = "";
-                
                 if(count($subLists) > 0){
-                   
                     foreach($subLists as $list){
-
                         $subscriberLists .= $list['listname'] . ",";
                     }
-
                     
                 } else{
-                 
                     $subscriberLists = $subLists[0]['listname'];
                 }
-                
-                
                 return rtrim($subscriberLists, ',');
         }
     

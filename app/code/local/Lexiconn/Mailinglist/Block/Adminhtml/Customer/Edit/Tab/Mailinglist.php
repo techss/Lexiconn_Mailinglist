@@ -44,19 +44,15 @@ class Lexiconn_Mailinglist_Block_Adminhtml_Customer_Edit_Tab_Mailinglist
         $customer = Mage::registry('current_customer');
         
         Mage::register('lex_customer', $customer);
-        Mage::fireLog($customer, "Set Customer");
         $helper = Mage::helper('mailinglist');
         
         $helper->setSelectedCustomer($customer);
         $subscriber = Mage::getModel('newsletter/subscriber')->loadByCustomer($customer);
-        //Mage::register('subscriber', $subscriber);
 
         if ($customer->getWebsiteId() == 0) {
             $this->setForm($form);
             return $this;
         }
-
-  
 
         $fieldset->addField('subscription', 'checkbox',
              array(
@@ -69,18 +65,6 @@ class Lexiconn_Mailinglist_Block_Adminhtml_Customer_Edit_Tab_Mailinglist
             $form->getElement('subscription')->setReadonly(true, true);
         }
 
-       // $form->getElement('subscription')->setIsChecked($subscriber->isSubscribed());
-/*
-        if($changedDate = $this->getStatusChangedDate()) {
-             $fieldset->addField('change_status_date', 'label',
-                 array(
-                        'label' => $subscriber->isSubscribed() ? Mage::helper('customer')->__('Last Date Subscribed') : Mage::helper('customer')->__('Last Date Unsubscribed'),
-                        'value' => $changedDate,
-                        'bold'  => true
-                 )
-            );
-        }
-*/
         $this->setForm($form);
         return $this;
         }
@@ -105,7 +89,6 @@ class Lexiconn_Mailinglist_Block_Adminhtml_Customer_Edit_Tab_Mailinglist
         $this->setChild('mailinglist_grid',
                 $this->getLayout()->createBlock('lexiconn_mailinglist/adminhtml_customer_edit_tab_mailinglist_grid','mailinglist.grid')
         );
-        
         
         return parent::_prepareLayout();
     }

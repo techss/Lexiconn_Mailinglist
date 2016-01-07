@@ -8,9 +8,7 @@ class Lexiconn_Mailinglist_Model_Observer
       
     public function addSubscriber(Varien_Event_Observer $observer)
     {
-        
-      //Mage::fireLog("Add Subscriber", "Observer");
-        
+    
       $event = $observer->getEvent();
       $order_id = $observer->getData('order_ids');
       
@@ -40,17 +38,12 @@ class Lexiconn_Mailinglist_Model_Observer
     public function removeSubscriber(Varien_Event_Observer $observer)
     {
         $event = $observer->getEvent();
-        
-        Mage::fireLog($event, "removeSubscriber");
-    
     
         return $this;
     }
     
     public function deleteSubscriber(Varien_Event_Observer $observer){
         $event = $observer->getEvent();
-        Mage::fireLog($event, "deleteSubscriber");
-        
         
         return $this;
     }
@@ -59,10 +52,7 @@ class Lexiconn_Mailinglist_Model_Observer
     {
         $event = $observer->getEvent();
     
-        Mage::fireLog($event, "changeSubscriber");
-    
         return $this;
     }
-        
 
 }

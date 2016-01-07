@@ -52,7 +52,6 @@ class Lexiconn_Mailinglist_Block_Adminhtml_Customer_Edit_Tab_Mailinglist_Grid
             }
         }
         
-        
         $this->setCollection($collection);
 
         return parent::_prepareCollection();
@@ -60,16 +59,12 @@ class Lexiconn_Mailinglist_Block_Adminhtml_Customer_Edit_Tab_Mailinglist_Grid
 
     protected function _prepareColumns()
     {
-        
-        
         $this->addColumn('listid', array(
             'header'    =>  Mage::helper('customer')->__('List ID'),
             'align'     =>  'left',
             'index'     =>  'listid',
             'width'     =>  10
         ));
-        
-       
         
         $this->addColumn('listname', array(
                 'header'    =>  Mage::helper('customer')->__('List Name'),
@@ -98,7 +93,7 @@ class Lexiconn_Mailinglist_Block_Adminhtml_Customer_Edit_Tab_Mailinglist_Grid
         ));
 
 
-         $this->addColumn('status', array(
+        $this->addColumn('status', array(
             'header'    =>  Mage::helper('customer')->__('Status'),
             'align'     =>  'center',
             //'filter'    =>  'adminhtml/customer_edit_tab_newsletter_grid_filter_status',
@@ -114,7 +109,6 @@ class Lexiconn_Mailinglist_Block_Adminhtml_Customer_Edit_Tab_Mailinglist_Grid
             'default'   =>  ' ---- '
         ));
         
- 
         return parent::_prepareColumns();
     }
     
@@ -151,13 +145,6 @@ class Lexiconn_Mailinglist_Block_Adminhtml_Customer_Edit_Tab_Mailinglist_Grid
         return 'mailinglist/order_grid_collection';
     }
     
-   
-   // public function getRowUrl($row)
-   // {
-   // 	Mage::fireLog($this->getRequest()->getParam('udate'));
-    //    return $this->getUrl('*/mailinglist_subscriber/viewcampaign', array('id'=>$row->getId()));
-   // }
-    //
 
 }
     

@@ -44,8 +44,6 @@ class Lexiconn_Mailinglist_Block_Adminhtml_Catalog_Category_Widget_Chooser
     
     public function getNodeClickListener()
     {
-        
-        Mage::fireLog("getNodeClickListener()", "Lexiconn_Mailinglist_Block_Adminhtml_Catalog_Category_Widget_Chooser");
         if ($this->getData('node_click_listener')) {
             return $this->getData('node_click_listener');
         }
@@ -54,10 +52,8 @@ class Lexiconn_Mailinglist_Block_Adminhtml_Catalog_Category_Widget_Chooser
                 $js = 'function (node, e) { if (node.ui.toggleCheck) { node.ui.toggleCheck(true); }}';
         } else {
                 $chooserJsObject = $this->getId();
-                
-                Mage::fireLog($chooserJsObject, "Lexiconn_Mailinglist_Block_Adminhtml_Catalog_Category_Widget_Chooser");
                 $js = 'function (node, e) {'.$chooserJsObject.'.setElementValue(node.attributes.id);'.$chooserJsObject.'.setElementLabel(node.text);'.$chooserJsObject.'.close();}';
-            }
+        }
         return $js;
      }
      
@@ -133,7 +129,6 @@ class Lexiconn_Mailinglist_Block_Adminhtml_Catalog_Category_Widget_Chooser
       */
      public function getCategoryCollection()
      {
-         Mage::fireLog(parent::getCategoryCollection()->addAttributeToSelect('url_key')->addAttributeToSelect('is_anchor'), "Lexiconn_Mailinglist_Block_Adminhtml_Catalog_Category_Widget_Chooser");
          return parent::getCategoryCollection()->addAttributeToSelect('url_key')->addAttributeToSelect('is_anchor');
      }
       
