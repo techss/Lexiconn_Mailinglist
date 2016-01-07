@@ -1,5 +1,9 @@
 <?xml version="1.0"?>
 <config>
+<!-- 
+ Additional Menu to display mailinglist subscribers... disabled because only limited fields can be called from the mailinglist API in a single request...
+ -->
+ <!--  
 	 <menu>
         <mailinglist translate="title" module="mailinglist">
             <title>LexiConn Newsletter</title>
@@ -13,7 +17,7 @@
             </children>
         </mailinglist>
     </menu>
-
+-->
     <acl>
 		<resources>
 			<all>

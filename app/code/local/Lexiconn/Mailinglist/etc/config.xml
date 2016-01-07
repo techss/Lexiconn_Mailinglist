@@ -89,17 +89,7 @@
 		                </lexiconn_mailinglist_model_observer>
 		            </observers>
 		    	</checkout_onepage_controller_success_action>
-		    	<!--  
-		    	<adminhtml_controller_action_predispatch_start>
-		    		<observers>
-		                <lexiconn_mailinglist_model_authcheck>
-		                    <class>Lexiconn_Mailinglist_Model_Authcheck</class>
-		                    <method>checkAuthentication</method>
-		                </lexiconn_mailinglist_model_authcheck>
-		            </observers>
-		    	</adminhtml_controller_action_predispatch_start>
-		    	-->
-			
+		    
 			</events>
 			
 		</global>
