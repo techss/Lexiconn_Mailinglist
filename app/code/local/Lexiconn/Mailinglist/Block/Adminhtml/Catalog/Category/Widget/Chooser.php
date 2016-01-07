@@ -1,5 +1,8 @@
 <?php
 /**
+ * Not currently in use
+ * 
+ * 
  * @category    Lexiconn
  * @package     Lexiconn_Mailinglist Copyright (c) 2015 LexiConn Internet Services, Inc. (http://www.lexiconn.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)

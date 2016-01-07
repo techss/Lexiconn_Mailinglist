@@ -1,5 +1,13 @@
 <?php
-
+/**
+ * Lexiconn Mailinglist Model Observer
+ *
+ * Provides functionality to manage existing mailinglist options for customers under Customers -> Manage Customers
+ * unsubscribe, resubscribe, or delete
+ *
+ * @category    Lexiconn
+ * @package     Lexiconn_Mailinglist
+ */
 class Lexiconn_Mailinglist_Model_Observer
 {
     public function __construct()
