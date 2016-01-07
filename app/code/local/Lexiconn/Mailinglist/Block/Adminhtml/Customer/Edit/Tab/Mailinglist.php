@@ -8,12 +8,13 @@ class Lexiconn_Mailinglist_Block_Adminhtml_Customer_Edit_Tab_Mailinglist
     public function __construct()
     {
         parent::_construct();
-        $this->setTemplate('mailinglist/customer/main.phtml');
+        $this->setTemplate('mailinglist/customer/mailinglist.phtml');
         
     }
     
     public function getCustomerId()
     {
+    	Mage::fireLog(Mage::registry('current_customer')->getId());
         return Mage::registry('current_customer')->getId();
     }
     
@@ -42,6 +43,9 @@ class Lexiconn_Mailinglist_Block_Adminhtml_Customer_Edit_Tab_Mailinglist
         $form = new Varien_Data_Form();
         $form->setHtmlIdPrefix('_mailinglist');
         $customer = Mage::registry('current_customer');
+        
+        $customer_data = Mage::getModel('customer/customer')->load($this->getCustomerId());
+        Mage::fireLog($customer_data);
         
         Mage::register('lex_customer', $customer);
         $helper = Mage::helper('mailinglist');

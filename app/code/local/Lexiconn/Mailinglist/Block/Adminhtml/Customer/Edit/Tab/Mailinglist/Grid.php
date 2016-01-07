@@ -1,13 +1,15 @@
 <?php
 /**
+ * Customer Lexiconn Mailinglist Grid
+ * 
+ * Custom grid displaying any customer subscriptions to the mailing list system.
+ *  
+ *  
  * @category    Lexiconn
  * @package     Lexiconn_Mailinglist Copyright (c) 2015 LexiConn Internet Services, Inc. (http://www.lexiconn.com)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-/**
- *  Customer Lexiconn Mailinglist Grid
- *
- **/
+
 class Lexiconn_Mailinglist_Block_Adminhtml_Customer_Edit_Tab_Mailinglist_Grid 
     extends Mage_Adminhtml_Block_Widget_Grid
 {
@@ -32,8 +34,14 @@ class Lexiconn_Mailinglist_Block_Adminhtml_Customer_Edit_Tab_Mailinglist_Grid
 
     protected function _prepareCollection()
     {
-        $email = Mage::registry('subscriber')->getEmail();
+
         $customer_id = Mage::registry('current_customer')->getId();
+        
+        $customer_data = Mage::getModel('customer/customer')->load($customer_id);
+        
+        $email = Mage::getModel('customer/customer')
+        			->load($customer_id)
+        			->getEmail();
         
         $helper = Mage::helper('mailinglist');
         $items = $helper->getSubscriberInfo($email);
