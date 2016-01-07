@@ -13,7 +13,7 @@ This REQUIRES Allow Symlinks to be enabled in Magenot under System -> Configurat
 
 This will allow for easy updates/patched without copying/overwriting code in each nested Magento directory.  Any custom modification to code will be implemented (and maintained) as a separate branch.
  
-INSTALLATION PROCEDURE (Could be added to add.lex)
+Installation
 ==================================================
 mkdir /home/DOM/Lexiconn
 cd /home/DOM/Lexiconn
