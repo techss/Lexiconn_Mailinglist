@@ -1,5 +1,13 @@
 <?php
-
+/**
+ * Lexiconn Mailinglist Block Newsletter Subscribe
+ *
+ * Defines the subscription block used to override default Magento subscription forms on the front end
+ *
+ * @category    Lexiconn
+ * @package     Lexiconn_Mailinglist Copyright (c) 2015 LexiConn Internet Services, Inc. (http://www.lexiconn.com)
+ * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
 class Lexiconn_Mailinglist_Block_Newsletter_Subscribe extends Mage_Newsletter_Block_Subscribe
 {
     
