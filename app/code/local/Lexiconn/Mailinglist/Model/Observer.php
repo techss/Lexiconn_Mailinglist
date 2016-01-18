@@ -12,6 +12,7 @@ class Lexiconn_Mailinglist_Model_Observer
 {
     public function __construct()
     {
+    	
     }
       
     public function addSubscriber(Varien_Event_Observer $observer)
