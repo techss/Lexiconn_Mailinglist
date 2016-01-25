@@ -11,6 +11,7 @@
 	        	<general>                
 	           		 <api_url>http://campaigns.serverhost.net/admin/api.php</api_url>       
 	           		 <add_default>auto_add</add_default> 
+	           		 <override_magento>No</override_magento>
 	       		 </general>
 	       		 
 	       		 <subform>

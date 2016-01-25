@@ -39,12 +39,16 @@ function fm_doAjax() {
                 evalScripts:false,
                 onComplete:function(response, json) {
                     //Element.hide(formId);
+                    
                     var resp = response.responseText.evalJSON(true);
+                  //  console.log(resp);
                     if(resp.success == "true"){
+                        Element.hide('fmLoader');
                     	Element.hide(fm_formId);
                         $('fmSuccess').update(resp.message);
                         Element.show('fmSuccess');
                     } else{
+                    	 Element.hide('fmLoader');
                     	 $('fmError').update(resp.message);
                          Element.show('fmError');
                     }

@@ -13,8 +13,10 @@ class Lexiconn_Mailinglist_Block_Newsletter_Subscribe extends Mage_Newsletter_Bl
     
     public function _toHtml()
     {
-        $this->setTemplate('mailinglist/subscriptionform/subscriptionform.phtml');
-    
+    	$config = Mage::getStoreConfig('mailinglist/general');
+    	if($config['override_magento']==1){
+        	$this->setTemplate('mailinglist/subscriptionform/subscriptionform.phtml');
+    	}
         return parent::_toHtml();
     }
     

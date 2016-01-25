@@ -13,9 +13,6 @@ class Lexiconn_Mailinglist_Block_Adminhtml_Mailinglist_Subscriber_Grid
         protected function _prepareCollection()
         {
             $collection = Mage::getModel('mailinglist/subscription')->getCollection();
-            
-           Mage::fireLog($collection, "Collection");
-            
             $this->setCollection($collection);
             return parent::_prepareCollection();
         }

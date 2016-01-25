@@ -9,10 +9,9 @@ class Lexiconn_Mailinglist_Model_Resource_Subscriber extends Mage_Newsletter_Mod
 
     public function loadByEmail($subscriberEmail)
     {
-        Mage::fireLog($subscriberEmail, "loadByEmail");
         $select = $this->_read->select()
-        ->from($this->getMainTable())
-        ->where('subscriber_email=:subscriber_email');
+        	->from($this->getMainTable())
+        	->where('subscriber_email=:subscriber_email');
     
         $result = $this->_read->fetchRow($select, array('subscriber_email'=>$subscriberEmail));
     
@@ -32,10 +31,8 @@ class Lexiconn_Mailinglist_Model_Resource_Subscriber extends Mage_Newsletter_Mod
     public function loadByCustomer(Mage_Customer_Model_Customer $customer)
     {
         $select = $this->_read->select()
-        ->from($this->getMainTable())
-        ->where('customer_id=:customer_id');
-    
-        Mage::fireLog($customer->getId(), "loadByCustomer");
+        	->from($this->getMainTable())
+        	->where('customer_id=:customer_id');
         
         $result = $this->_read->fetchRow($select, array('customer_id'=>$customer->getId()));
     
@@ -44,8 +41,8 @@ class Lexiconn_Mailinglist_Model_Resource_Subscriber extends Mage_Newsletter_Mod
         }
     
         $select = $this->_read->select()
-        ->from($this->getMainTable())
-        ->where('subscriber_email=:subscriber_email');
+	        ->from($this->getMainTable())
+	        ->where('subscriber_email=:subscriber_email');
     
         $result = $this->_read->fetchRow($select, array('subscriber_email'=>$customer->getEmail()));
     

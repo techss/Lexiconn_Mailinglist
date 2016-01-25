@@ -17,10 +17,6 @@ class Lexiconn_Mailinglist_Model_Subscriberaction {
 	                'value' => 'auto_add',
 	                'label' => 'Automatically After Order',
 	            ),
-                array(
-                        'value' => 'none',
-                        'label' => 'Do Not Override Magento Mailinglist',
-                ),
 	            array(
 	                'value' => 'add_on_demand',
 	                'label' => 'Only From Admin',

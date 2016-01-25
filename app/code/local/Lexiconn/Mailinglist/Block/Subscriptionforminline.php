@@ -36,11 +36,11 @@ class Lexiconn_Mailinglist_Block_Subscriptionforminline
    protected function _toHtml()
    {
 
-     $this->setTemplate('mailinglist/subscriptionform/subscription_form_inline.phtml');
+     	$this->setTemplate('mailinglist/subscriptionform/subscription_form_inline.phtml');
 
-       $html = $this->renderView();
+       	$html = $this->renderView();
        
-       return $html;
+      	return $html;
    }
 
 };

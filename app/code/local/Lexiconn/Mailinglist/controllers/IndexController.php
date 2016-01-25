@@ -60,10 +60,8 @@ class Lexiconn_Mailinglist_IndexController extends Mage_Core_Controller_Front_Ac
                          //"fields" => $field
         );
 
-
-
         if($helper->subscriberExistsOnList($email, $lid)){
-            Mage::fireLog("Subscriber Exists", "Lexiconn_Mailinglist_IndexController");
+           // Mage::fireLog("Subscriber Exists", "Lexiconn_Mailinglist_IndexController");
 
 
         } else{
@@ -73,7 +71,7 @@ class Lexiconn_Mailinglist_IndexController extends Mage_Core_Controller_Front_Ac
                 $redirect_url = Mage::helper('cms/page')->getPageUrl($error_url);
             }
 
-             Mage::app()->getFrontController()->getResponse()->setRedirect($redirect_url);
+            Mage::app()->getFrontController()->getResponse()->setRedirect($redirect_url);
         }
     }
 
@@ -81,7 +79,10 @@ class Lexiconn_Mailinglist_IndexController extends Mage_Core_Controller_Front_Ac
     {
 
         $form_values = $_REQUEST;
-        Mage::fireLog($form_values, "Lexiconn_Mailinglist_IndexController - subscribeAction()");
+        $config = Mage::getStoreConfig('mailinglist/subform');
+        $success_message = $config['success_message'];
+        $duplicate_message = $config['duplicate_message'];
+        $error_message = $config['error_message'];
         $email = $form_values['email'];
         $lid = $form_values['listid'];
 
@@ -92,9 +93,8 @@ class Lexiconn_Mailinglist_IndexController extends Mage_Core_Controller_Front_Ac
         );
 
         if($helper->subscriberExists($email)){
-            Mage::fireLog("Subscriber Exists", "Lexiconn_Mailinglist_IndexController");
             $output = array("success" => "false",
-                    "message" => "Subscriber Exists",
+                    		"message" => $duplicate_message,
             );
 
             echo json_encode($output);
@@ -102,22 +102,18 @@ class Lexiconn_Mailinglist_IndexController extends Mage_Core_Controller_Front_Ac
         } else{
 
             if($helper->addSubscriber($form_values)){
-
-                Mage::fireLog("Subscriber Does Not Exist", "Lexiconn_Mailinglist_IndexController");
-
                 $output = array("success" => "true",
-                        "message" => "Added Subscriber",
+                       			"message" => $success_message,
                 );
 
                 echo json_encode($output);
 
             } else{
                 $output = array("success" => "false",
-                        "message" => "Error",
+                        		"message" => $error_message,
                 );
 
                 echo json_encode($output);
-
             }
         }
     }
