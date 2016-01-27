@@ -35,7 +35,8 @@ class Lexiconn_Mailinglist_Adminhtml_Mailinglist_SubscriberController extends Ma
       
         $subscribers = $this->getRequest()->getParam('id');
         
-       // $subscribers = explode(",", $subscribersIds);
+        Mage::dispatchEvent('lexiconn_mailinglist_remove_subscribers_before', array('subscribers' => $subscribers));
+        
         $helper = Mage::helper('mailinglist');
         
         foreach($subscribers as $subscriber){
@@ -63,9 +64,6 @@ class Lexiconn_Mailinglist_Adminhtml_Mailinglist_SubscriberController extends Ma
       
         $subscribers = $this->getRequest()->getParam('id');
         
-        //print_r($subscribersIds);
-    	//die();
-       // $subscribers = explode(",", $subscribersIds);
         $helper = Mage::helper('mailinglist');
     
         foreach($subscribers as $subscriber){

@@ -4,6 +4,10 @@
 			<active>true</active>
 			<codePool>local</codePool>
 			<depends>
+				<Mage_Adminhtml/>
+				<Mage_Cms/>
+				<Mage_Customer/>
+				<Mage_Newsletter/>
 				<Mage_Widget/>
 			</depends>
 		</Lexiconn_Mailinglist>

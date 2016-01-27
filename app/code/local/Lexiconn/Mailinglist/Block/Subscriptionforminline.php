@@ -20,10 +20,7 @@ class Lexiconn_Mailinglist_Block_Subscriptionforminline
     
    public function __construct(){
        $this->html = "";
-       
        $this->customFields = "";
-       
-       
    }
    
    protected function getCustomField($id){

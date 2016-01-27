@@ -41,11 +41,14 @@ class Lexiconn_Mailinglist_Controllers_Newsletter_SubscriberController extends M
       */
     public function newAction()
     {
+    	
         if ($this->getRequest()->isPost() && $this->getRequest()->getPost('email')) {
             $session            = Mage::getSingleton('core/session');
             $customerSession    = Mage::getSingleton('customer/session');
             $email              = (string) $this->getRequest()->getPost('email');
 
+            Mage::dispatchEvent('lexiconn_mailinglist_new_subscriber_before', array('email' => $email));
+            
             try {
                 if (!Zend_Validate::is($email, 'EmailAddress')) {
                     Mage::throwException($this->__('Please enter a valid email address.'));
@@ -78,6 +81,8 @@ class Lexiconn_Mailinglist_Controllers_Newsletter_SubscriberController extends M
             catch (Exception $e) {
                 $session->addException($e, $this->__('There was a problem with the subscription.'));
             }
+            
+            Mage::dispatchEvent('lexiconn_mailinglist_new_subscriber_after', array());
         }
         $this->_redirectReferer();
     }
@@ -90,7 +95,10 @@ class Lexiconn_Mailinglist_Controllers_Newsletter_SubscriberController extends M
         $id    = (int) $this->getRequest()->getParam('id');
         $code  = (string) $this->getRequest()->getParam('code');
 
+        Mage::dispatchEvent('lexiconn_mailinglist_confirm_before', array('code' => $code));
+        
         if ($id && $code) {
+        	
             $subscriber = Mage::getModel('newsletter/subscriber')->load($id);
             $session = Mage::getSingleton('core/session');
 
@@ -105,6 +113,8 @@ class Lexiconn_Mailinglist_Controllers_Newsletter_SubscriberController extends M
             }
         }
 
+        Mage::dispatchEvent('lexiconn_mailinglist_confirm_after', array());
+        
         $this->_redirectUrl(Mage::getBaseUrl());
     }
 
@@ -116,6 +126,8 @@ class Lexiconn_Mailinglist_Controllers_Newsletter_SubscriberController extends M
         $id    = (int) $this->getRequest()->getParam('id');
         $code  = (string) $this->getRequest()->getParam('code');
 
+        Mage::dispatchEvent('lexiconn_mailinglist_unsubscribe_before', array('code' => $code));
+        
         if ($id && $code) {
             $session = Mage::getSingleton('core/session');
             try {
@@ -131,6 +143,9 @@ class Lexiconn_Mailinglist_Controllers_Newsletter_SubscriberController extends M
                 $session->addException($e, $this->__('There was a problem with the un-subscription.'));
             }
         }
+        
+        Mage::dispatchEvent('lexiconn_mailinglist_unsubscribe_after', array());
+        
         $this->_redirectReferer();
     }
 }

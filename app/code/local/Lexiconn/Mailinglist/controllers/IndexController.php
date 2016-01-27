@@ -11,34 +11,27 @@ class Lexiconn_Mailinglist_IndexController extends Mage_Core_Controller_Front_Ac
 
     public function checkemailAction()
     {
-
+    	
         $form_values = $_REQUEST;
-        //Mage::fireLog($form_values, "Lexiconn_Mailinglist_IndexController");
         $email = $form_values['email'];
         $lid = $form_values['listid'];
-
-        Mage::fireLog($email, "Lexiconn_Mailinglist_IndexController");
+        
+        Mage::dispatchEvent('lexiconn_mailinglist_check_email_exists_before', array('form_values' => $form_values));
 
         $helper = Mage::helper('mailinglist');
 
         if($helper->subscriberExistsOnList($email, $lid)){
-            Mage::fireLog("Subscriber Exists", "Lexiconn_Mailinglist_IndexController");
             $output = array("new_subscriber" => "false",
                     "message" => "Subscriber Exists",
             );
 
-            //echo json_encode($output);
             echo "false";
 
         } else{
 
-            Mage::fireLog("Subscriber Does Not Exist", "Lexiconn_Mailinglist_IndexController");
-
             $output = array("new_subscriber" => "true",
                     "message" => "",
             );
-
-            //echo json_encode($output);
             echo "true";
         }
     }
@@ -57,7 +50,6 @@ class Lexiconn_Mailinglist_IndexController extends Mage_Core_Controller_Front_Ac
 
         $options = array("email" => $email,
                          "listid" => $lid,
-                         //"fields" => $field
         );
 
         if($helper->subscriberExistsOnList($email, $lid)){
@@ -85,19 +77,19 @@ class Lexiconn_Mailinglist_IndexController extends Mage_Core_Controller_Front_Ac
         $error_message = $config['error_message'];
         $email = $form_values['email'];
         $lid = $form_values['listid'];
+        
+        Mage::dispatchEvent('lexiconn_mailinglist_ajaxsubscribe_before', array('form_values' => $form_values));
 
         $helper = Mage::helper('mailinglist');
 
         $options = array("email" => $email,
-                "listid" => $lid,
+                		 "listid" => $lid,
         );
 
         if($helper->subscriberExists($email)){
             $output = array("success" => "false",
                     		"message" => $duplicate_message,
             );
-
-            echo json_encode($output);
 
         } else{
 
@@ -106,16 +98,16 @@ class Lexiconn_Mailinglist_IndexController extends Mage_Core_Controller_Front_Ac
                        			"message" => $success_message,
                 );
 
-                echo json_encode($output);
-
             } else{
                 $output = array("success" => "false",
                         		"message" => $error_message,
                 );
-
-                echo json_encode($output);
             }
         }
+        
+        echo json_encode($output);
+        
+        Mage::dispatchEvent('lexiconn_mailinglist_ajaxsubscribe_after', array('result' => $output));
     }
 
 

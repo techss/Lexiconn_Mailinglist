@@ -27,7 +27,7 @@
                     <fields>
                         <api_username translate="label comment">
                             <label>Mailing List API Username</label>
-                            <comment>Your username to log in to the LexiConn Mailing List system</comment>
+                            <comment>Your username for the LexiConn Mailing List system</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>10</sort_order>
                             <show_in_default>1</show_in_default>
@@ -37,7 +37,7 @@
                         <api_password translate="label comment">
                         	<backend_model>mailinglist/auth</backend_model>
                             <label>Mailing List API Password</label>
-                            <comment>Your password to log in to the LexiConn Mailing List system</comment>
+                            <comment>Your password for the LexiConn Mailing List system</comment>
                             <frontend_type>password</frontend_type>
                             <validate>validate-password</validate>
                             <sort_order>12</sort_order>
