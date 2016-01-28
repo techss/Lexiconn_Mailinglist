@@ -28,7 +28,9 @@ class Lexiconn_Mailinglist_Model_Observer
       $lastname = $order->getCustomerLastname();
       
       $config = Mage::getStoreConfig('mailinglist/general');
-      
+      /*
+       * Only add subscriber if module configuration is set to add customers after order...
+       */
       if($config['add_default']=='auto_add'){
           $options = array(
                   "email" => $email,
@@ -43,20 +45,26 @@ class Lexiconn_Mailinglist_Model_Observer
       
       return $this;
     }
-    
+    /*
+     * Currently no functionality - placeholder
+     */
     public function removeSubscriber(Varien_Event_Observer $observer)
     {
         $event = $observer->getEvent();
     
         return $this;
     }
-    
+    /*
+     * Currently no functionality - placeholder
+     */
     public function deleteSubscriber(Varien_Event_Observer $observer){
         $event = $observer->getEvent();
         
         return $this;
     }
-    
+    /*
+     * Currently no functionality - placeholder
+     */
     public function changeSubscriber(Varien_Event_Observer $observer)
     {
         $event = $observer->getEvent();

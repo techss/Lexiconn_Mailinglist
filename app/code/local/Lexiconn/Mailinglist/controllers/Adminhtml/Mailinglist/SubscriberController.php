@@ -12,7 +12,7 @@ class Lexiconn_Mailinglist_Adminhtml_Mailinglist_SubscriberController extends Ma
         $this->_setActiveMenu('mailinglist/mailinglist');
         // $this->getResponse()->setBody($this->getLayout()->createBlock('adminhtml/mailinglist_subscriber_grid')->toHtml());
         $block = $this->getLayout()->createBlock('mailinglist/adminhtml_subscription');
-         $this->_addContent($block);
+        $this->_addContent($block);
        
       // var_dump($block);
        $this->renderLayout();
@@ -22,9 +22,6 @@ class Lexiconn_Mailinglist_Adminhtml_Mailinglist_SubscriberController extends Ma
     public function gridAction()
     {
         $this->loadLayout();
-        //$this->getResponse()->setBody(
-         //       $this->getLayout()->createBlock('mailinglist/adminhtml_subscription_grid')->toHtml()
-        //);
         $block = $this->getLayout()->createBlock('mailinglist/adminhtml_subscription_grid');
         $this->_addContent($block);
         
@@ -34,8 +31,6 @@ class Lexiconn_Mailinglist_Adminhtml_Mailinglist_SubscriberController extends Ma
     public function removeAction(){
       
         $subscribers = $this->getRequest()->getParam('id');
-        
-        Mage::dispatchEvent('lexiconn_mailinglist_remove_subscribers_before', array('subscribers' => $subscribers));
         
         $helper = Mage::helper('mailinglist');
         
@@ -61,7 +56,6 @@ class Lexiconn_Mailinglist_Adminhtml_Mailinglist_SubscriberController extends Ma
         $helper = Mage::helper('mailinglist');
         
         $customer = $helper->getSelectedCustomer();
-      
         $subscribers = $this->getRequest()->getParam('id');
         
         $helper = Mage::helper('mailinglist');
@@ -90,8 +84,7 @@ class Lexiconn_Mailinglist_Adminhtml_Mailinglist_SubscriberController extends Ma
         $customer = $helper->getSelectedCustomer();
        
         $subscribers = $this->getRequest()->getParam('id');
-    
-       // $subscribers = explode(",", $subscribersIds);
+        
         $helper = Mage::helper('mailinglist');
     
         foreach($subscribers as $subscriber){
@@ -112,27 +105,25 @@ class Lexiconn_Mailinglist_Adminhtml_Mailinglist_SubscriberController extends Ma
     
     }
    
+    /*
+     * Not currently in use...
+     */
     public function viewcampaignAction(){
     	$helper = Mage::helper('mailinglist');
     	 
     	$rowinfo = $this->getRequest()->getParam('id');
-    
-    	print_r($rowinfo);
-    	
     	$listSplit = explode(":", $rowinfo);
     	
     	$email = $listSplit[1];
     	
     	$listId = $listSplit[2];
     	
-    	print_r($email);
-    	
-    	print_r($listId);
-    	
-    	//$this->_redirect("*/customer/edit/id/$customer_id");
-    
+   
     }
     
+    /*
+     * TODO: Add Mass Subscriber action
+     */
     public function addAction(){
         
     }

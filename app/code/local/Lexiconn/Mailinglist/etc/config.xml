@@ -63,7 +63,8 @@
 			</models>
 			
 			<events>
-			 
+			
+			 	<!-- Not currently implemented 
 		    	<newsletter_subscriber_save_before>
 		    		<observers>
 		                <lexiconn_mailinglist_model_observer>
@@ -72,7 +73,7 @@
 		                </lexiconn_mailinglist_model_observer>
 		            </observers>
 		    	</newsletter_subscriber_save_before>
-		    	
+		    
 		    	<newsletter_subscriber_delete_after>
 		    		<observers>
 		                <lexiconn_mailinglist_model_observer>
@@ -81,6 +82,7 @@
 		                </lexiconn_mailinglist_model_observer>
 		            </observers>
 		    	</newsletter_subscriber_delete_after>
+		    	-->
 		    	
 		    	<checkout_onepage_controller_success_action>
 		    		<observers>
