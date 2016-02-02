@@ -17,12 +17,10 @@
                 <script>lexiconn/lexiconn_mailinglist/lex.js</script>
                 <params><![CDATA[data-group="js002"]]></params>
             </action>
-			<!-- 
             <action method="addJs">
-                <script>jquery/jquery.validation.js</script>
+                <script>lexiconn/lexiconn_mailinglist/jquery.validate.min.js</script>
                 <params><![CDATA[data-group="js002"]]></params>
             </action>
-             -->
             <action method="addJs">
                 <script>lexiconn/lexiconn_mailinglist/jquery-ui-1.11.4/jquery-ui.js</script>
                 <params><![CDATA[data-group="js002"]]></params>
