@@ -81,7 +81,7 @@ class Lexiconn_Mailinglist_IndexController extends Mage_Core_Controller_Front_Ac
         $options = array("email" => $email,
                 		 "listid" => $lid,
         );
-
+        
         if($helper->subscriberExists($email)){
             $output = array("success" => "false",
                     		"message" => $duplicate_message,
@@ -99,10 +99,11 @@ class Lexiconn_Mailinglist_IndexController extends Mage_Core_Controller_Front_Ac
                         		"message" => $error_message,
                 );
             }
+            
+            echo json_encode($output);
         }
         
-        echo json_encode($output);
-
+        
     }
 
 

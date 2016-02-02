@@ -89,7 +89,6 @@
 	      modal: true,
 	      buttons: {
 		        OK: function() {
-		        	//$('#lex_subscribe_form').get(0).reset();
 		        	lex_message.dialog( "close" );
 		        }
 	      }
@@ -104,7 +103,7 @@
 	      maxWidth: 350,
 	      modal: true,
 	      
-	     buttons: [
+	      buttons: [
 	                {
 	                    id: "button-cancel",
 	                    text: "Cancel",
@@ -117,19 +116,19 @@
 	                    text: "Subscribe",
 	                    click: function() {
 	                    	if( !$('#lex_subscribe_form_popup').valid()) {
-	       	        	     
+	       	        	     	
 	        	        	} else {
 
-	        		        	
 	        		        	$("#lex_message_popup").html( "Subscribing..." );
-	        		        	lex_message.dialog("open");
-	        		        	//$('#lex_subscribe_form').get(0).reset();
-	        		        	lexDialog.dialog("close");
+	        		        	
 	        		        	var email = $("#lex_email_popup").val();
 	        		            var listid = $("#listid_popup").val();
 
 	        		            var dataObj = $("#lex_subscribe_form_popup").serializeArray();
 	        		            var postdata = $.param(dataObj, false);
+
+	        		            lex_message.dialog("open");
+	        		        	lexDialog.dialog("close");
 	        		            
 	        	        		$.ajax({
 	          	        	         type: "POST",
@@ -163,7 +162,6 @@
 	   
 	  $("#lex_subscribe_popup_link").click(function(e){
 		  e.preventDefault();
-		  
 		  lexDialog.dialog("open");
 	  });
 

@@ -359,6 +359,8 @@ class Lexiconn_Mailinglist_Helper_Data extends Mage_Core_Helper_Abstract
     
         $this->response = (string)curl_exec($this->request);
         
+        Mage::fireLog($this->response);
+        
         curl_close($this->request);
     
         $this->successMessage = (string)$this->response;
