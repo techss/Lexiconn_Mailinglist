@@ -25,5 +25,5 @@ ln -s /home/DOM/Lexiconn/modules/lexiconn_mailinglist/app/design/adminhtml/defau
 ln -s /home/DOM/Lexiconn/modules/lexiconn_mailinglist/app/design/adminhtml/default/default/template/mailinglist /home/DOM/www/app/design/adminhtml/default/default/template/mailinglist
 ln -s /home/DOM/Lexiconn/modules/lexiconn_mailinglist/app/design/frontend/base/default/layout/mailinglist.xml /home/DOM/www/app/design/frontend/base/default/layout/mailinglist.xml
 ln -s /home/DOM/Lexiconn/modules/lexiconn_mailinglist/app/design/frontend/base/default/template/mailinglist /home/DOM/www/app/design/frontend/base/default/template/mailinglist
-
+ln -s /home/DOM/Lexiconn/modules/lexiconn_mailinglist/js/lexiconn /home/DOM/www/js/lexiconn
 ln -s /home/DOM/Lexiconn/modules/lexiconn_mailinglist/app/etc/modules/Lexiconn_Mailinglist.xml /home/DOM/www/app/etc/modules/Lexiconn_Mailinglist.xml
