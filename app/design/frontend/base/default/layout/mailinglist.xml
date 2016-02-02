@@ -7,22 +7,24 @@
         <reference name="head">
             <action method="addItem">
                 <type>js_css</type>
-                <name>jquery/jquery-ui.theme.css</name>
+                <name>lexiconn/lexiconn_mailinglist/jquery-ui-1.11.4/jquery-ui.theme.min.css</name>
             </action>
             <action method="addJs">
-                <script>jquery/jquery.min.js</script>
+                <script>lexiconn/lexiconn_mailinglist/jquery.min.js</script>
                 <params><![CDATA[data-group="js002"]]></params>
             </action>
             <action method="addJs">
-                <script>jquery/lex.js</script>
+                <script>lexiconn/lexiconn_mailinglist/lex.js</script>
                 <params><![CDATA[data-group="js002"]]></params>
             </action>
+			<!-- 
             <action method="addJs">
                 <script>jquery/jquery.validation.js</script>
                 <params><![CDATA[data-group="js002"]]></params>
             </action>
+             -->
             <action method="addJs">
-                <script>jquery/jquery-ui.js</script>
+                <script>lexiconn/lexiconn_mailinglist/jquery-ui-1.11.4/jquery-ui.js</script>
                 <params><![CDATA[data-group="js002"]]></params>
             </action>
         </reference>
@@ -33,7 +35,7 @@
     </default>
     <!--
 	     Customer account pages, rendered for all tabs in dashboard
-	     -->
+	-->
     <customer_account>
         <!-- Mage_Newsletter -->
         <reference name="customer_account_navigation">
