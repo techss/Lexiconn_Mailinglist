@@ -8,6 +8,7 @@ class Lexiconn_Mailinglist_Block_Adminhtml_Customer_Edit_Tab_Mailinglist
     public function __construct()
     {
         parent::_construct();
+       // Mage::helper("lexiconn/firelog")->log("Test 123", "Test");
         $this->setTemplate('mailinglist/customer/mailinglist.phtml');
         
     }

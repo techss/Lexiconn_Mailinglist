@@ -121,7 +121,7 @@
 	      	<layout>
 		      	<updates>
 		      		<mailinglist>
-		      			<file>mailinglist.xml</file>
+		      			<file>lexiconn/mailinglist.xml</file>
 		      		</mailinglist>
 		      	</updates>
 	      	</layout>
@@ -158,7 +158,7 @@
 			<layout>
 				<updates>
 					<lexiconn_mailinglist module="lexiconn_mailinglist">
-						<file>mailinglist.xml</file>
+						<file>lexiconn/mailinglist.xml</file>
 					</lexiconn_mailinglist>
 				</updates>
 			</layout>
